@@ -44,11 +44,29 @@ test_x_vectors = vectorizer.transform(test_x)
 
 ##classification 
 ##LinearSVM
-from sklearn import svm
+# from sklearn import svm
 
-clf_svm = svm.SVC(
-    kernel='linear'
-)
-clf_svm.fit(train_x_vectors,train_y)
+# clf_svm = svm.SVC(
+#     kernel='linear'
+# )
+# clf_svm.fit(train_x_vectors,train_y)
 
-clf_svm.predict(test_x_vectors)
+# clf_svm.predict(test_x_vectors)
+
+###DECison Treee Classifier
+# from sklearn.tree import DecisionTreeClassifier
+# clf_dec = DecisionTreeClassifier()
+# clf_dec.fit(train_x_vectors,train_y)
+# clf_dec.predict(test_x_vectors)
+
+###Naive Bayes 
+# from sklearn.naive_bayes import GaussianNB 
+# clf_gnb = GaussianNB
+# clf_gnb.fit(train_x_vectors,train_y)
+# clf_gnb.predict(test_x_vectors)
+
+##Logistic Regression 
+# from sklearn.linear_model import LogisticRegression 
+# clf_log = LogisticRegression()
+# clf_log.fit(train_x_vectors,train_y)
+# clf_log.predict(test_x_vectors)
