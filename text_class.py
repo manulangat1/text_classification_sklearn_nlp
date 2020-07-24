@@ -1,5 +1,6 @@
 import json
 from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction import CountVectorizer
 ###make a data class
 class Sentiment:
     NEGATIVE = "NEGATIVE"
@@ -35,3 +36,8 @@ train_y = [ x.sentiment for x in training ]
 
 test_x = [x.text for x in test]
 test_y = [x.sentiment for x in test]
+
+
+vectorizer = CountVectorizer()
+train_x_vectors = vectorizer.fit_transform(train_x)
+# test_x_vectors = vectorizer.transform(test_x)
