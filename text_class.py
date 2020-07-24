@@ -1,5 +1,5 @@
 import json
-
+from sklearn.model_selection import train_test_split
 ###make a data class
 class Sentiment:
     NEGATIVE = "NEGATIVE"
@@ -25,6 +25,13 @@ with open('./Books_small.json', 'r' ) as f:
         reviews.append(Review(review['reviewText'],review['overall']))
 
 print(len(reviews))
-print(reviews[5].sentiment)
+print(reviews[5].text)
 
 
+training,test = train_test_split(reviews,test_size=0.33,random_state=42)
+train_x = [ x.text for x in training ]
+train_y = [ x.sentiment for x in training ]
+
+
+test_x = [x.text for x in test]
+test_y = [x.sentiment for x in test]
