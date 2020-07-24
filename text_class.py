@@ -20,7 +20,7 @@ class Review:
         else:
             return Sentiment.POSITIVE
 reviews = []
-with open('./Books_small.json', 'r' ) as f:
+with open('./Books_small_10000.json', 'r' ) as f:
     for line in f:
         review = json.loads(line)
         reviews.append(Review(review['reviewText'],review['overall']))
@@ -85,3 +85,5 @@ print(f1_score(test_y,clf_svm.predict(test_x_vectors),average=None,labels=[Senti
 print(f1_score(test_y,clf_dec.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
 print(f1_score(test_y,clf_gnb.predict(test_x_vectors.todense()),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
 print(f1_score(test_y,clf_log.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
+
+print(train_y.count(Sentiment.NEGATIVE))
