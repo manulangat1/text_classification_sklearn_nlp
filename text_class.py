@@ -1,5 +1,6 @@
 import json
 import random
+from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
 ###make a data class
@@ -67,10 +68,9 @@ test_x_vectors = vectorizer.transform(test_x)
 ##classification 
 ##LinearSVM
 from sklearn import svm
-
-clf_svm = svm.SVC(
-    kernel='linear'
-)
+parameters = {'kernel':('linear','rbf'),'C':(1,4,8,16,42)}
+svms = svm.SVC()
+clf_svm = GridSearchCV(svms,parameters,cv=5)
 clf_svm.fit(train_x_vectors,train_y)
 
 print(clf_svm.predict(test_x_vectors[0]))
@@ -104,13 +104,14 @@ print(test_y[0])
 
 from sklearn.metrics import f1_score
 print(f1_score(test_y,clf_svm.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
-print(f1_score(test_y,clf_dec.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
-print(f1_score(test_y,clf_gnb.predict(test_x_vectors.todense()),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
-print(f1_score(test_y,clf_log.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
+# print(f1_score(test_y,clf_dec.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
+# print(f1_score(test_y,clf_gnb.predict(test_x_vectors.todense()),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
+# print(f1_score(test_y,clf_log.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEGATIVE]))
 
 print(test_y.count(Sentiment.POSITIVE))
 
-test_set = ["very very bad","very fan, though the setting is extremly bad","I thotouglu enjoyed this,5","bad book do not buy","horrible waste of time","it was both very bad and good"]
+test_set = ["very very bad","very fan, though the setting is extremly bad","I thotouglu enjoyed this,5","bad book do not buy","horrible waste of time","it was both very bad and better"]
 new_test = vectorizer.transform(test_set)
 
 print(clf_svm.predict(new_test))
+
