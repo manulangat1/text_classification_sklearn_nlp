@@ -115,3 +115,8 @@ new_test = vectorizer.transform(test_set)
 
 print(clf_svm.predict(new_test))
 
+
+import pickle
+
+with open('./models/sentiment_classifier.pkl','wb') as f:
+    pickle.dump(clf_gnb,f)
