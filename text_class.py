@@ -75,7 +75,13 @@ clf_log.fit(train_x_vectors,train_y)
 print(clf_log.predict(test_x_vectors[0]))
 print(test_y[0])
 ##Mean accureacy
-print(clf_svm.score(test_x_vectors,test_y))
-print(clf_dec.score(test_x_vectors,test_y))
-print(clf_gnb.score(test_x_vectors.todense(),test_y))
-print(clf_log.score(test_x_vectors,test_y))
+# print(clf_svm.score(test_x_vectors,test_y))
+# print(clf_dec.score(test_x_vectors,test_y))
+# print(clf_gnb.score(test_x_vectors.todense(),test_y))
+# print(clf_log.score(test_x_vectors,test_y))
+
+from sklearn.metrics import f1_score
+print(f1_score(test_y,clf_svm.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
+print(f1_score(test_y,clf_dec.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
+print(f1_score(test_y,clf_gnb.predict(test_x_vectors.todense()),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
+print(f1_score(test_y,clf_log.predict(test_x_vectors),average=None,labels=[Sentiment.POSITIVE,Sentiment.NEUTRAL,Sentiment.NEGATIVE]))
