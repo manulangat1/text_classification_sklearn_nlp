@@ -40,4 +40,15 @@ test_y = [x.sentiment for x in test]
 
 vectorizer = CountVectorizer()
 train_x_vectors = vectorizer.fit_transform(train_x)
-# test_x_vectors = vectorizer.transform(test_x)
+test_x_vectors = vectorizer.transform(test_x)
+
+##classification 
+##LinearSVM
+from sklearn import svm
+
+clf_svm = svm.SVC(
+    kernel='linear'
+)
+clf_svm.fit(train_x_vectors,train_y)
+
+clf_svm.predict(test_x_vectors)
