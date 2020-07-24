@@ -120,3 +120,10 @@ import pickle
 
 with open('./models/sentiment_classifier.pkl','wb') as f:
     pickle.dump(clf_gnb,f)
+
+
+##read
+with open('./models/sentiment_classifier.pkl','rb') as f:
+    loaded_clf = pickle.load(f)
+print(test_x[0])
+print(loaded_clf.predict(test_x_vectors[0]))
